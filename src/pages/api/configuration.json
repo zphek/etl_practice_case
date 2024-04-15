@@ -1,0 +1,32 @@
+{
+    "host_database": {
+        "name": "main_etl",
+        "credentials": {
+            "username": "root",
+            "password": "1234"
+        }
+    },
+    "guest_databases": [
+        {
+            "name": "etl",
+            "credentials": {
+                "username": "root",
+                "password": "1234"
+            }
+        },
+        {
+            "name": "etl_2",
+            "credentials": {
+                "username": "root",
+                "password": "1234"
+            }
+        }
+    ],
+    "data_extraction_endpoints": [
+        {
+            "url": "http://localhost:3000/api/getFacturas",
+            "token": "token_endpoint_1"
+        }
+    ],
+    "root_directory": "/home/bernardo/files"
+}
