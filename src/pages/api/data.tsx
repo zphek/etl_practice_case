@@ -82,7 +82,8 @@ export default async function handler(
         conf.host_database.credentials.password
     );
 
-    data.forEach((element) => {
+    try {
+      data.forEach((element) => {
         const query = `INSERT INTO factura (fecha, producto, cantidad, monto, id, total_amount, discount, net_amount, profit_margin) VALUES ('${element.fecha}', '${element.producto}', ${parseInt(element.cantidad)}, ${parseFloat(element.monto)}, ${parseInt(element.id)}, ${parseFloat(element.total_amount)}, ${parseFloat(element.discount)}, ${parseFloat(element.net_amount)}, ${parseFloat(element.profit_margin)});`;
         // Ejecutar la consulta
         db.query(query)
@@ -92,7 +93,16 @@ export default async function handler(
             .catch((error) => {
                 console.error("Error al insertar datos en la base de datos:", error);
             });
-    });
+      });
+
+      res.json({
+        error: false
+      })
+    } catch (error) {
+      res.json({
+        error: true
+      })
+    }
 }
 
 }
